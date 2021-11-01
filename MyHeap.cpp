@@ -7,8 +7,7 @@
 using namespace std;
 
 //Constructor del heap. O(1)
-MyHeap::MyHeap(int len)
-{
+MyHeap::MyHeap(int len){
     this->size = 0;
     this->len = len;
     this->values = new int[len];
@@ -47,10 +46,8 @@ void MyHeap::swap(int *one, int *two){
 }
 
 //Agrega el valor dado. O(logn)
-void MyHeap::push(int n)
-{
-    if (this->size == this->len)
-    {
+void MyHeap::push(int n){
+    if (this->size == this->len){
         cout << "No se pudo agregar el valor" << endl;
         return;
     }
@@ -60,16 +57,14 @@ void MyHeap::push(int n)
     this->values[i] = n;
   
     
-    while (i != 0 && this->values[padre(i)] > this->values[i])
-    { //En caso de romper la condicion del heap, lo arregla.
+    while (i != 0 && this->values[padre(i)] > this->values[i]){ //En caso de romper la condicion del heap, lo arregla.
        swap(&this->values[i], &this->values[padre(i)]);
        i = padre(i);
     }
 }
 
 //Hace el proceso de heapify menor. O(nLogn)
-void MyHeap::heapifyMenor(int num)
-{
+void MyHeap::heapifyMenor(int num){
     int izq = izquierda(num);
     int der = derecha(num);
     int menor = num;
@@ -77,30 +72,26 @@ void MyHeap::heapifyMenor(int num)
         menor = izq;
     if (der < this->size && this->values[der] < this->values[menor])
         menor = der;
-    if (menor != num)
-    {
+    if (menor != num){
         swap(&this->values[num], &this->values[menor]);
         heapifyMenor(menor);
     }
 }
 //Disminuye el valor dado. O(logn)
-void MyHeap::disminuir(int num, int nuevoValor)
-{
+void MyHeap::disminuir(int num, int nuevoValor){
     this->values[num] = nuevoValor;
-    while (num != 0 && this->values[padre(num)] > this->values[num])
-    {
+    while (num != 0 && this->values[padre(num)] > this->values[num]){
        swap(&this->values[num], &this->values[padre(num)]);
        num = padre(num);
     }
 }
 
 //Regresa y elimina el valor menor del heap. O(logn)
-int MyHeap::sacarMenor()
-{
-    if (this->size <= 0)
+int MyHeap::sacarMenor(){
+    if (this->size <= 0){
         return INT_MAX;
-    if (this->size == 1)
-    {
+    }
+    if (this->size == 1){
         this->size--;
         return this->values[0];
     }
@@ -114,8 +105,7 @@ int MyHeap::sacarMenor()
 }
 
 //Elimina un valor del heap. O(logn)
-void MyHeap::pop(int num)
-{
+void MyHeap::pop(int num){
     disminuir(num, INT_MIN);
     sacarMenor();
 }
