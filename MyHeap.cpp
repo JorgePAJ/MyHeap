@@ -1,8 +1,12 @@
+/* Jorge Plasencia Ahm Jorgensen
+   A01637493
+   Heap*/
 #include "MyHeap.h"
 #include <iostream>
 #include <climits>
 using namespace std;
 
+//Constructor del heap.
 MyHeap::MyHeap(int len)
 {
     this->size = 0;
@@ -10,52 +14,60 @@ MyHeap::MyHeap(int len)
     this->values = new int[len];
 }
 
+//Regresa el elemento por salir.
 int MyHeap::top(){
     if (this->size > 0){
         return this->values[0];
     }else{
         cout << "la fila priorizada no tiene un valor" << endl;
     }
+    return -1;
 }
 
+//Regresa el valor padre.
 int MyHeap::padre(int num){
     return (num-1)/2;
 }
 
+//Regresa el valor a la izquierda.
 int MyHeap::izquierda(int num){
     return (2*num + 1);
 }
 
+//Regresa el valor a la derecha.
 int MyHeap::derecha(int num){
     return (2*num + 2);
 }
 
+//Intercambia la posicion de dos valores dados.
 void MyHeap::swap(int *one, int *two){
     int tmp = *one;
     *one = *two;
     *two = tmp;
 }
+
+//Agrega el valor dado.
 void MyHeap::push(int n)
 {
     if (this->size == this->len)
     {
-        cout << "\nOverflow: Could not inserstKey\n";
+        cout << "No se pudo agregar el valor" << endl;
         return;
     }
-  
-    // First insert the new key at the end
+
     this->size++;
-    int i = this->size - 1;
+    int i = this->size - 1; //Inserta el valor al final.
     this->values[i] = n;
   
-    // Fix the min heap property if it is violated
+    
     while (i != 0 && this->values[padre(i)] > this->values[i])
-    {
+    { //En caso de romper la condicion del heap, lo arregla.
        swap(&this->values[i], &this->values[padre(i)]);
        i = padre(i);
     }
 }
 
+//Hace el proceso de heapify menor.
 void MyHeap::heapifyMenor(int num)
 {
     int izq = izquierda(num);
@@ -71,7 +83,7 @@ void MyHeap::heapifyMenor(int num)
         heapifyMenor(menor);
     }
 }
-
+//Disminuye el valor dado.
 void MyHeap::disminuir(int num, int nuevoValor)
 {
     this->values[num] = nuevoValor;
@@ -82,6 +94,7 @@ void MyHeap::disminuir(int num, int nuevoValor)
     }
 }
 
+//Regresa y elimina el valor menor del heap.
 int MyHeap::sacarMenor()
 {
     if (this->size <= 0)
@@ -92,42 +105,29 @@ int MyHeap::sacarMenor()
         return this->values[0];
     }
   
-    // Store the minimum value, and remove it from heap
+    // Guarda y remueve el valor minimo del heap.
     int root = this->values[0];
     this->values[0] = this->values[this->size-1];
     this->size--;
     heapifyMenor(0);
-  
     return root;
 }
 
+//Elimina un valor del heap.
 void MyHeap::pop(int num)
 {
     disminuir(num, INT_MIN);
     sacarMenor();
 }
 
+//Regresa un booleano si esta vacio o no el heap.
 bool MyHeap::isEmpty(){
     return this->size == 0;
 }
 
+//Regresa el numerom de datos guardados.
 int MyHeap::length(){
     return this->size;
 }
 
-int main()
-{
-    MyHeap h(11);
-    h.push(3);
-    h.push(2);
-    h.pop(1);
-    h.push(15);
-    h.push(5);
-    h.push(4);
-    h.push(45);
-    cout << h.sacarMenor() << " ";
-    cout << h.top() << " ";
-    h.disminuir(2, 1);
-    cout << h.top();
-    return 0;
-}
+//Ingrese el main aqui :)
