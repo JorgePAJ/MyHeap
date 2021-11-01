@@ -6,7 +6,7 @@
 #include <climits>
 using namespace std;
 
-//Constructor del heap.
+//Constructor del heap. O(1)
 MyHeap::MyHeap(int len)
 {
     this->size = 0;
@@ -24,7 +24,7 @@ int MyHeap::top(){
     return -1;
 }
 
-//Regresa el valor padre.
+//Regresa el valor padre. O(1)
 int MyHeap::padre(int num){
     return (num-1)/2;
 }
@@ -46,7 +46,7 @@ void MyHeap::swap(int *one, int *two){
     *two = tmp;
 }
 
-//Agrega el valor dado.
+//Agrega el valor dado. O(logn)
 void MyHeap::push(int n)
 {
     if (this->size == this->len)
@@ -67,7 +67,7 @@ void MyHeap::push(int n)
     }
 }
 
-//Hace el proceso de heapify menor.
+//Hace el proceso de heapify menor. O(nLogn)
 void MyHeap::heapifyMenor(int num)
 {
     int izq = izquierda(num);
@@ -83,7 +83,7 @@ void MyHeap::heapifyMenor(int num)
         heapifyMenor(menor);
     }
 }
-//Disminuye el valor dado.
+//Disminuye el valor dado. O(logn)
 void MyHeap::disminuir(int num, int nuevoValor)
 {
     this->values[num] = nuevoValor;
@@ -94,7 +94,7 @@ void MyHeap::disminuir(int num, int nuevoValor)
     }
 }
 
-//Regresa y elimina el valor menor del heap.
+//Regresa y elimina el valor menor del heap. O(logn)
 int MyHeap::sacarMenor()
 {
     if (this->size <= 0)
@@ -113,7 +113,7 @@ int MyHeap::sacarMenor()
     return root;
 }
 
-//Elimina un valor del heap.
+//Elimina un valor del heap. O(logn)
 void MyHeap::pop(int num)
 {
     disminuir(num, INT_MIN);
