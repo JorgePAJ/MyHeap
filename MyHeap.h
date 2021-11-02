@@ -19,12 +19,12 @@ class   MyHeap{
         int top();//regresa quien es el siguiente elemento en salir pero sin borrarlo
         bool isEmpty();//regresa true si el heap está vacío caso contrario regresa false
         int length();//regresa cuántos elementos están almacenando el heap. OJO: NO EL TAMAÑO
-        int padre(int num);
-        int izquierda(int num);
-        int derecha(int num);
-        void swap(int* one, int* two);
-        void disminuir(int num, int nuevoValor);
-        int sacarMenor();
-        void heapifyMenor(int num);
+        int padre(int num);//Regresa el valor padre.
+        int izquierda(int num);//Regresa el valor a la izquierda.
+        int derecha(int num);//Regresa el valor a la derecha.
+        void swap(int* one, int* two);//Intercambia la posicion de dos valores dados.
+        void disminuir(int num, int nuevoValor);//Disminuye el valor dado.
+        int sacarMenor();//Regresa y elimina el valor menor del heap.
+        void heapifyMenor(int num);//Hace el proceso de heapify menor.
     };
 #endif 
