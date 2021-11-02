@@ -43,12 +43,10 @@ void MyHeap::push(int n)
         return;
     }
   
-    // First insert the new key at the end
     this->size++;
     int i = this->size - 1;
     this->values[i] = n;
-  
-    // Fix the min heap property if it is violated
+
     while (i != 0 && this->values[padre(i)] > this->values[i])
     {
        swap(&this->values[i], &this->values[padre(i)]);
