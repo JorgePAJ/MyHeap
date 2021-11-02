@@ -7,10 +7,10 @@
 using namespace std;
 
 //Constructor del heap. O(1)
-MyHeap::MyHeap(int len){
+MyHeap::MyHeap(){
     this->size = 0;
     this->len = len;
-    this->values = new int[len];
+    this->values = new int[7];
 }
 
 //Regresa el elemento por salir.

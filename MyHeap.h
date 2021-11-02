@@ -9,7 +9,7 @@ class   MyHeap{
         int size;    //Representa cuantos valores tiene almacenado el Heap
        int len;    //Representa el tamaño o capacidad máxima actual del arreglo
     public:
-        MyHeap(int len);//Inicializa el los atributos. El atributo values lo inicializa como un arreglo vacío tamaño de 7.
+        MyHeap();//Inicializa el los atributos. El atributo values lo inicializa como un arreglo vacío tamaño de 7.
         void push(int n); //Inserta un valor en el heap. Sólo cuando el nuevo valor no cabe en el arreglo
                           //crece el arreglo al tamaño 2*n+1. (Expansión din+amica del arreglo)
                           //Es decir si se tiene el arreglo ya con 7 valores y se quiere insertar otro valor(El 8vo)
